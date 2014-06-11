@@ -15,10 +15,11 @@ link(rel='apple-touch-icon-precomposed', href='i/icons/apple-touch-icon-precompo
 link(rel='stylesheet', href='css/app.css')
 link(rel='stylesheet', href='css/font-awesome.min.css')
 
-//if lt IE 9
-  <script src="js/vendor/html5shiv.min.js"></script>
-  <script src="js/vendor/nwmatcher-1.2.5-min.js"></script>
-  <script src="js/vendor/selectivizr-1.0.3b.js"></script>
-  <script src="js/vendor/respond.min.js"></script>
-  <link rel="stylesheet" href="css/ie.css">
+<!--[if (gte IE 6)&(lte IE 9)]>
+<script src="js/vendor/respond.min.js"></script>
+<script src="js/vendor/html5shiv.min.js"></script>
+<script src="js/vendor/nwmatcher-1.2.5-min.js"></script>
+<script src="js/vendor/selectivizr-1.0.3b.js"></script>
+<link rel="stylesheet" href="css/ie.css">
+<![endif]-->
 script(src='js/vendor/modernizr.js')

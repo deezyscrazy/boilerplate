@@ -4,10 +4,10 @@ require 'compass-photoshop-drop-shadow'
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-css_dir = "css"
-sass_dir = "scss"
-images_dir = "i"
-javascripts_dir = "js"
+css_dir = "/source/css"
+sass_dir = "/source/scss"
+images_dir = "/source/i"
+javascripts_dir = "/source/js"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
@@ -30,6 +30,6 @@ relative_assets = true
 # and then run:
 # sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass
 
-sass_options = { :debug_info => true }
+# sass_options = { :debug_info => true }
 
 disable_warnings = true

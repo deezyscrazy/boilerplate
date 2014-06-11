@@ -1,46 +1,12 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    autoprefixer: {
-        dist: {
-            files: {
-                'css/app.css': 'css/app.css'
-            }
-        }
-    },
-    concat: {
-      options: {
-        stripBanners: true,
-        banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - ' +
-          '<%= grunt.template.today("dd-mm-yyyy") %> */',
-      },
-      dist: {
-        src: ['js/jquery.placeholder.js', 'js/jquery.validate.min.js', 'js/lightbox-2.6.min.js', 'js/jquery.easing.1.3.js', 'js/jquery.modal.min.js', 'js/jquery-ui-1.10.4.custom.min.js', 'js/jquery.flexverticalcenter.js', 'js/rangeSlider.min.js', 'js/app.js'],
-        dest: 'js/built.js',
-      },
-    },
-    uglify: {
-      options: {
-        // compress: {
-        //   global_defs: {
-        //     "DEBUG": false
-        //   },
-        //   dead_code: true
-        // },
-        banner: '/*! <%= pkg.name %> <%= grunt.template.today("dd-mm-yyyy") %> */\n'
-      },
-      dist: {
-        files: {
-          'js/app.min.js': ['js/built.js']
-        }
-      }
-    },
     jade: {
       compile: {
         files: [{
-          cwd: 'jade',
-          src: ['*.jade'],
-          dest: '.',
+          cwd: 'source/jade',
+          src: ['**/*.jade', '!**/includes/*.jade'],
+          dest: 'dest',
           expand: true,
           ext: '.html'
         }]
@@ -56,16 +22,78 @@ module.exports = function(grunt) {
         }
       }
     },
+    autoprefixer: {
+      multiple_files: {
+        expand: true,
+        flatten: true,
+        src: 'source/css/*.css',
+        dest: 'dest/css/'
+      },
+    },
+    copy: {
+      css: {
+        files: [{
+          cwd: 'source/css',
+          src: ['**/*.css'],
+          dest: 'dest/css',
+          expand: true,
+        }]
+      },
+      js: {
+        files: [{
+          cwd: 'source/js',
+          src: ['**/*.js'],
+          dest: 'dest/js',
+          expand: true,
+        }]
+      },
+      img: {
+        files: [{
+          cwd: 'source/i',
+          src: ['**/*'],
+          dest: 'dest/i',
+          expand: true,
+        }]
+      },
+      fonts: {
+        files: [{
+          cwd: 'source/fonts',
+          src: ['**/*'],
+          dest: 'dest/fonts',
+          expand: true,
+        }]
+      }
+    },
     watch: {
-      grunt: { files: ['Gruntfile.js'] },
-
-      compass: {
-        files: 'scss/**/*.scss',
-        tasks: ['compass', 'autoprefixer']
+      livereload: {
+        options: {
+          livereload: true
+        },
+        files: ['dest/**/*'],
+      },
+      js: {
+        files: ['source/js/**/*.js'],
+        tasks: ['copy:js'],
+      },
+      css: {
+        files: ['source/css/**/*.css'],
+        tasks: ['copy:css'],
       },
       jade: {
-        files: ['jade/**/*.jade'],
+        files: ['source/**/*.jade'],
         tasks: ['jade'],
+      },
+      compass: {
+        files: 'source/**/*.scss',
+        tasks: ['compass', 'autoprefixer']
+      },
+      img: {
+        files: 'source/i/*',
+        tasks: ['copy:img']
+      },
+      fonts: {
+        files: 'source/fonts/*',
+        tasks: ['copy:fonts']
       }
     },
     connect: {
@@ -79,14 +107,19 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-jade');
   grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.registerTask('build', ['compass']);
-  grunt.registerTask('default', ['connect', 'build','watch','jade','concat','uglify']);
+  grunt.registerTask('default', [
+    'connect', 
+    'copy',
+    'jade', 
+    'compass',
+    'autoprefixer',
+    'watch'
+  ]);
 }

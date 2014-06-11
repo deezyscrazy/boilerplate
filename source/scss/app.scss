@@ -11,13 +11,10 @@
 @import "photoshop-drop-shadow";
 @import "compass/css3";
 @import "compass/utilities";
+@import "compass/reset";
 
 // main
 @import "settings";
-@import "reset";
-@import "text";
-@import "960";
-@import "grid";
 @import "else";
 
 // JQ UI
@@ -38,7 +35,7 @@
 }
 
 body {
-	font-family: 'Roboto', Helvetica, Arial, sans-serif;
+	font-family: Helvetica, Arial, sans-serif;
 	background: $bg-color;
 	line-height: 150%;
 	font-size: $text-size;
@@ -49,13 +46,13 @@ a[href^=tel]{
     text-decoration: none;
 }
 
-@media screen and (max-device-width: 480px){
-  body{
-    -webkit-text-size-adjust: none;
-  }
-}
+// @media screen and (max-device-width: 480px){
+//   body{
+//     -webkit-text-size-adjust: none;
+//   }
+// }
 
-#wrapper {
+#page-wrap {
 	overflow: hidden;
 }
 

@@ -5,17 +5,14 @@ doctype html
 html(lang='ru').no-js
   head
     include includes/head
+    //- Uncomment for LiveReload
     //-| <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
   body
-    .wrapper
-      .wrapper__1280
-        include includes/top-bar
-        include includes/header
-        include includes/slider
-        //- begin main
-        .main
-          //- begin container
-          .container
-          //- end container
-        include includes/footer
+    .page-wrap
+      include includes/top-bar
+      include includes/header
+      include includes/slider
+      main
+        
+      include includes/footer
     include includes/tail
