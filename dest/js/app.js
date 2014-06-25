@@ -37,7 +37,7 @@
 // 		$('#slider .slider__nav a').on('click', function(e) {
 // 			e.preventDefault();
 // 			if ($('#slider .slider__slide:animated').size()>0) return;
-			
+
 // 			var direction;
 // 			$(this).hasClass('slider__nav--next') ? direction = 1 : direction = 0;
 
@@ -58,7 +58,7 @@
 // 			});
 // 		});
 
-// 	})();	
+// 	})();
 
 // 	////////////////////////
 // 	//  PLACEHOLDERS FIX  //
@@ -92,7 +92,7 @@
 
 // 			event.preventDefault();
 // 			if ($inner.is(':animated')) {return;}
-			
+
 // 		    if ( $this.hasClass("specslider__nav--prev") ) {
 // 		    	if (count <= 0) {
 // 		    		return;
@@ -113,11 +113,11 @@
 // 			});
 
 // 			$inner.attr('data-count', count);
-			
+
 // 		});
 // 	})();
 
-// })(jQuery);	
+// })(jQuery);
 
 // 	////////////////////////
 // 	//  FORMS VALIDATION  //
@@ -141,11 +141,11 @@
 // 	//    SCROLL   //
 // 	/////////////////
 
-// 	if (BrowserDetect.browser == 'Opera' && BrowserDetect.version <= 12) { 
+// 	if (BrowserDetect.browser == 'Opera' && BrowserDetect.version <= 12) {
 // 		$('a[data-scroll]').click(function(e){
 // 		    scrollFrom = $(window).scrollTop();
 // 		    var target = $(this).attr('href');
-// 		    $(window.opera?'html':'html, body').animate({ 
+// 		    $(window.opera?'html':'html, body').animate({
 // 		        scrollTop: $(target).offset().top-0
 // 		    },1000);
 // 		});
@@ -230,7 +230,7 @@
 // 	  itemSelector: '.item',
 // 	  layoutMode: 'fitRows'
 // 	});
-        
+
 //     $container.isotope({ filter: '.auto' });
 
 // 	$('#filters').on( 'click', 'a', function( event ) {
@@ -355,17 +355,17 @@
 //  BROWSER DETECTION  //
 /////////////////////////
 
-var BrowserDetect = 
+var BrowserDetect =
 {
-    init: function () 
+    init: function ()
     {
         this.browser = this.searchString(this.dataBrowser) || "Other";
         this.version = this.searchVersion(navigator.userAgent) ||       this.searchVersion(navigator.appVersion) || "Unknown";
     },
 
-    searchString: function (data) 
+    searchString: function (data)
     {
-        for (var i=0 ; i < data.length ; i++)   
+        for (var i=0 ; i < data.length ; i++)
         {
             var dataString = data[i].string;
             this.versionSearchString = data[i].subString;
@@ -377,14 +377,14 @@ var BrowserDetect =
         }
     },
 
-    searchVersion: function (dataString) 
+    searchVersion: function (dataString)
     {
         var index = dataString.indexOf(this.versionSearchString);
         if (index == -1) return;
         return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
     },
 
-    dataBrowser: 
+    dataBrowser:
     [
         { string: navigator.userAgent, subString: "Chrome",  identity: "Chrome" },
         { string: navigator.userAgent, subString: "MSIE",    identity: "Explorer" },
