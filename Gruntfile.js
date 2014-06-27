@@ -88,11 +88,11 @@ module.exports = function(grunt) {
         tasks: ['compass', 'autoprefixer']
       },
       img: {
-        files: 'source/i/*',
+        files: 'source/i/**/*',
         tasks: ['copy:img']
       },
       fonts: {
-        files: 'source/fonts/*',
+        files: 'source/fonts/**/*',
         tasks: ['copy:fonts']
       }
     },
@@ -115,9 +115,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('default', [
-    'connect', 
+    'connect',
     'copy',
-    'jade', 
+    'jade',
     'compass',
     'autoprefixer',
     'watch'
