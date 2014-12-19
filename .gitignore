@@ -46,3 +46,6 @@ node_modules
 #sftp-config.json
 
 .sublime-grunt.cache
+
+#MAC system files
+.DS_Store

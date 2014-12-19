@@ -21,8 +21,8 @@ $lighterBorderColor: lighten($borderColor, 10%);
 
 // TYPE --------------------------------------------------------
 
-$fontFamily: "Karla", "lucida grande", sans-serif;
-$fontSize: 18px;
+$fontFamily: 'PT Sans', Helvetica, Arial, sans-serif;
+$fontSize: 1em;
 
 // LAYOUT --------------------------------------------------------
 
@@ -30,16 +30,16 @@ $gutter: 40px;
 $maxColumnWidth: 740px;
 
 // UI COMPONENTS --------------------------------------------------------
-$radius: 4px;
+$radius: 0;
 
 @import "compass/css3";
 @import "compass/utilities/general/clearfix";
 
 // Preload images
-body:after {
-  content: url(../i/prev.png) url(../i/next.png);
-  display: none;
-}
+// body:after {
+//   content: url(../i/prev.png) url(../i/next.png);
+//   display: none;
+// }
 
 .lightboxOverlay {
   position: absolute;
@@ -81,7 +81,7 @@ body:after {
 }
 
 .lb-container {
-  padding: 4px;
+  padding: 0;
 }
 
 .lb-loader {
@@ -101,7 +101,7 @@ body:after {
   margin: 0 auto;
   //background: url(../i/loading.gif) no-repeat;
   font-size: 32px;
-  color: #000;
+  color: #0AAAED;
   display: inline-block;
   font-family: FontAwesome;
   font-style: normal;
@@ -113,7 +113,7 @@ body:after {
   -moz-animation: spin 2s infinite linear;
   -o-animation: spin 2s infinite linear;
   animation: spin 2s infinite linear;
-  @include text-shadow(rgba(255,255,255, 0.5) 0 0 30px);
+  @include text-shadow(rgba(#444, 0.5) 0 0 30px);
   &:before {
     content: "\f021";
   }
@@ -137,90 +137,122 @@ body:after {
 }
 
 .lb-prev, .lb-next {
-  width: 49%;
+  width: 100px;
   height: 100%;
   cursor: pointer;
-  /* Trick IE into showing hover */
-  display: block;
+  position: relative;
+
+  display: inline-block;
+  font-family: 'mihamoto';
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  font-size: 36px;
+  color: #00A9E2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  transition: opacity .3s ease-out;
+  opacity: .8;
+
+  text-shadow: 2px 1px 3px rgba(#444, .8);
+
+  &:hover {
+    color: #00A9E2;
+    opacity: 1;
+
+    &:active {
+      margin-top: 1px;
+    }
+  }
+
+  &:before {
+    display: block;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    margin-top: -25px;
+    line-height: 50px;
+    text-align: center;
+    //background-color: #fff;
+    border-radius: 100%;
+  }
 }
 
 .lb-prev {
   left: 0;
   float: left;
-  @include opacity(0);
-  @include transition(opacity 0.6s);
-  &:hover {
-    @include opacity(1);
-    background: url(../i/prev.png) left 48% no-repeat;
+  &:before {
+    right: 20px;
+    content: "\e600";
   }
 }
 
 .lb-next {
   right: 0;
   float: right;
-  @include opacity(0);
-  @include transition(opacity 0.6s);
-  &:hover {
-    @include opacity(1);
-    background: url(../i/next.png) right 48% no-repeat;
+  &:before {
+    left: 20px;
+    content: "\e601";
+    text-shadow: -2px 1px 3px rgba(0,0,0,.8);
   }
 }
 
 .lb-dataContainer {
   margin: 0 auto;
-  padding-top: 5px;
-  @include pie-clearfix;
   width: 100%;
-  @include border-bottom-radius($radius);
+  //min-height: 50px;
+  background-color: #fff;
+  color: #2C2B2C;
+
+  .lb-data {
+    .lb-details {
+      @include cf();
+
+      .lb-caption {
+        width: 50%;
+        float: left;
+        text-align: left;
+        padding: 30px 20px;
+      }
+
+      .lb-number {
+        width: 50%;
+        float: left;
+        text-align: right;
+        padding: 30px 20px;
+      }
+    }
+
+  }
 }
 
-.lb-data {
-  padding: 0 4px;
-  color: #bbbbbb;
-  position: relative;
-  .lb-details {
-    width: 85%;
-    float: left;
-    text-align: left;
-    line-height: 1.1em;
+.lb-close {
+  display: inline-block;
+  font-family: 'mihamoto';
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: none;
+  font-size: 20px;
+  position: absolute;
+  top: -35px;
+  right: 0;
+  color: #fff;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  visibility: hidden;
+  cursor: pointer;
+  &:before {
+    content: "\e605";
+    visibility: visible;
   }
-  .lb-caption {
-    font-size: 13px;
-    font-weight: bold;
-    line-height: 1em;
-  }
-  .lb-number {
-    display: block;
-    clear: left;
-    padding-bottom: 1em;
-    font-size: 12px;
-    color: #999999;
-  }
-  .lb-close {
-    display: inline-block;
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: none;
-    font-size: 30px;
-    position: absolute;
-    bottom: -30px;
-    right: 0;
-    color: #fff;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    visibility: hidden;
+  @include opacity(0.7);
+  @include transition(opacity 0.2s);
+  &:hover {
+    color: #FFF;
     cursor: pointer;
-    &:before {
-      content: "\f00d";
-      visibility: visible;
-    }
-    @include opacity(0.7);
-    @include transition(opacity 0.2s);
-    &:hover {
-      cursor: pointer;
-      @include opacity(1);
-    }
+    @include opacity(1);
   }
 }

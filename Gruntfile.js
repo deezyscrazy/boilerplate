@@ -68,12 +68,6 @@ module.exports = function(grunt) {
       }
     },
     watch: {
-      livereload: {
-        options: {
-          livereload: true
-        },
-        files: ['dest/**/*'],
-      },
       js: {
         files: ['source/js/**/*.js'],
         tasks: ['copy:js'],
