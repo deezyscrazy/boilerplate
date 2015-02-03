@@ -81,7 +81,7 @@ module.exports = function(grunt) {
         tasks: ['jade'],
       },
       compass: {
-        files: 'source/**/*.scss',
+        files: ['source/**/*.scss', 'source/**/*.sass' ],
         tasks: ['compass']
       },
       img: {

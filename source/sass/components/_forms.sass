@@ -1,0 +1,81 @@
+.b-input
+  -webkit-appearance: none
+  display: inline-block
+  outline: none
+  margin-bottom: 18px
+  width: 300px
+  height: 41px
+  padding: 5px 10px
+  border: 1px solid #DDD
+  border-radius: 0
+  background-color: #FFF
+
+  color: $text-color
+  font-family: $font-family
+  font-size: $text-size
+
+  &:focus
+    border-color: #00ABE0
+
+  &.error
+    border-color: #FF6F1D
+
+  +placeholder
+    color: #807a7a
+    font-size: $text-size
+
+// Error placement in ruby:
+//
+// <div class="field_with_errors">
+//   <input id="post_title" name="post[title]" size="30" type="text" value="">
+// </div>
+//
+// http://guides.rubyonrails.org/active_record_validations.html#displaying-validation-errors-in-views
+//
+//.field_with_errors
+//  .b-input
+//    color: #db2300
+
+.b-select
+  background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAMBAMAAADrBkIEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEUAAACisr2isr2isr0AAABpxCLHAAAAA3RSTlMAf4C/aSLHAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAEdJREFUGNNtytEJACAIhGFtgsAFgiYo998tO+zB9H85OD7iTuitJyuuNxWMdYe7KZjooMx/7Dxh8IzBC3x5gS+vsPEKG0/4ADZNBy1StoBEAAAAAElFTkSuQmCC') right center no-repeat
+  background-size: 22px
+  padding-right: 27px
+  &::-ms-expand
+    display: none
+  &[disabled]
+    opacity: .8
+
+.b-textarea
+  font-family: $font-family
+  width: 300px
+  height: 200px
+  max-width: 300px
+  max-height: 200px
+  resize: none
+  padding: 10px
+  margin-bottom: 18px
+
+.b-label
+  display: inline-block
+  vertical-align: middle
+  padding-right: 10px
+
+.m-button
+  display: inline-block
+  border: none
+  text-decoration: none
+  position: relative
+  cursor: pointer
+  user-select: none
+  text-align: center
+  color: #fff
+  font-family: $font-family
+  font-size: $text-size
+  padding: 15px 30px
+  background-color: #000
+  margin-bottom: 18px
+
+  &:hover
+    background-color: #434343
+    &:active
+      top: 2px

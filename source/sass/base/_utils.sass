@@ -1,0 +1,102 @@
+// ₽
+// &#8381;
+
+=cf
+  *zoom: 1
+  &:before, &:after
+    content: ''
+    display: table
+  &:after
+    clear: both
+
+@function em($px, $base: $base-font-size)
+  @return $px / $base * 1em
+
+// Placeholder styling mixin
+=placeholder
+  \::-webkit-input-placeholder
+    @content
+  \:-moz-placeholder
+    @content
+  \::-moz-placeholder
+    @content
+  \:-ms-input-placeholder
+    @content
+
+=long-shadow($type, $color, $length, $fadeout: true, $skew: false, $direction: right)
+  $shadow: ""
+  @if $skew == false or $type == text
+    @if $direction == right
+      @for $i from 0 to $length - 1
+        $shadow: $shadow + $i + "px " + $i + "px 0 " + $color + ","
+    @if $direction == left
+      @for $i from 0 to $length - 1
+        $shadow: $shadow + $i * -1 + "px " + $i + "px 0 " + $color + ","
+  @if $fadeout == true
+    @for $i from 1 to $length - 1
+      @if $type == text or $skew == false
+        @if $direction == right
+          $shadow: $shadow + $i + "px " + $i + "px 0 " + rgba($color, 1 - $i / $length) + ","
+        @if $direction == left
+          $shadow: $shadow + $i * -1 + "px " + $i + "px 0 " + rgba($color, 1 - $i / $length) + ","
+      @if $type == box and $skew == true
+        @if $direction == right
+          $shadow: $shadow + $i + "px " + $i + "px 0 " + $i * 0.2 + "px " + rgba($color, 1 - $i / $length) + ","
+        @if $direction == left
+          $shadow: $shadow + $i * -1 + "px " + $i + "px 0 " + $i * 0.2 + "px " + rgba($color, 1 - $i / $length) + ","
+    $shadow: $shadow + $length + "px " + $length + "px 0 " + rgba($color, 0)
+  @if $fadeout == false
+    @if $skew == true and $type == box
+      @for $i from 0 to $length - 1
+        $shadow: $shadow + $i + "px " + $i + "px 0 " + $i * 0.1 + "px " + $color + ","
+    $shadow: $shadow + $length + "px " + $length + "px 0 " + rgba(0, 0, 0, 0)
+  $shadow: unquote($shadow)
+  @if $type == "box"
+    box-shadow: $shadow
+  @if $type == "text"
+    text-shadow: $shadow
+
+.b-debug-pagelist
+  position: fixed
+  z-index: 1030
+  width: 200px
+  height: auto
+  background-color: #fff
+  left: -200px
+  top: 300px
+  padding: 30px
+  border-top-right-radius: 10px
+  border-bottom-right-radius: 10px
+  // opacity: .9;
+  border: 1px solid #DDD
+  transition: all .3s ease
+  &:hover
+    left: 0
+  .b-debug-pagelist__btn
+    position: absolute
+    width: 50px
+    height: 50px
+    top: 50%
+    margin-top: -25px
+    right: -50px
+    background-color: #fff
+    border-top-right-radius: 10px
+    border-bottom-right-radius: 10px
+    cursor: pointer
+    border: 1px solid #DDD
+    border-left: none
+    &:after
+      content: ' '
+      position: absolute
+      width: 100%
+      height: 100%
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12.4px" height="25px" viewBox="273.1 0 12.4 25"><path fill="#888" d="M273.1,2.6l0-2.6l12.4,12.5L273.1,25l0-2.6l9.7-9.9L273.1,2.6L273.1,2.6z"/></svg>') center center no-repeat
+  ul
+    margin-bottom: 0
+    list-style: none
+    li
+      line-height: 1.5
+      margin-left: 0
+      &:before
+        display: none
+      a

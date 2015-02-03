@@ -8,6 +8,69 @@ html(lang='ru').no-js
   body
     .page-wrap
       include includes/header
+      .container
+        h1 Заголовок первого уровня
+        h2 Заголовок второго уровня
+        h3 Заголовок третьего уровня
+
+        p Приобретая оборудование в нашей компании, Вы получаете профессиональную сервисную поддержку на весь период его эксплуатации. Сервисный отдел имеет в штате опытных, хорошо обученных инженеров, прошедших профессиональную подготовку в центрах многих производителей.<br><br>Возможность получения <strong>профессиональной консультации</strong> позволит сделать правильный выбор при покупке оборудования.
+
+        ul
+          header Мы предоставляем следующие услуги:
+          li <a href="#">Комсомольск-на-Амуре</a> — по пятницам;
+          li Благовещенск — по вторникам и пятницам;
+          li Гарантированное качество и срок доставки;
+          li <a href="#">Страхование</a>, охрана груза;
+          li Обрешетка по необходимости;
+          li Возможность отправки от 1 кг до 30
+
+        form
+          input(type="text", placeholder="Input").b-input
+          br
+          input(type="text", placeholder="Input").b-input.error
+          br
+          select.b-input.b-select
+            option(selected, disabled) Select option
+            option Select option
+            option Select option
+            option Select option
+          br
+          textarea.b-input.b-textarea
+          br
+          label.b-label Label for input
+          input(type="text", placeholder="Input").b-input
+          br
+          button.m-button Button
+
+        table
+          tr
+            th №
+            th Тоннаж, тонн
+            th Объем, м&#179;
+            th Кол-во мест, шт.
+            th Наименованиe
+            th Темп. режим t &#176;C
+          tr
+            td 1
+            td 1
+            td 30
+            td 1
+            td мебель
+            td Не требуется
+          tr
+            td 2
+            td 0,35
+            td 30
+            td 2
+            td двигатель
+            td Не требуется
+          tr
+            td Итого
+            td 1,35
+            td 60
+            td 3
+            td —
+            td —
 
     include includes/footer
     include includes/tail
