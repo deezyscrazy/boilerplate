@@ -1,6 +1,15 @@
 // ₽
 // &#8381;
 
+=resetTap
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+
+=hover
+  .is-notouch &:hover
+    @content
+  .is-touch &:active
+    @content
+
 =cf
   *zoom: 1
   &:before, &:after

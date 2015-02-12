@@ -30,23 +30,24 @@ module.exports = function(grunt) {
         expand: true,
         flatten: true,
         src: 'source/css/*.css',
-        dest: 'dest/css/'
+        dest: 'dest/assets/stylesheets/'
       },
     },
+    svg2png: {
+      all: {
+        files: [
+          {
+              src: ['source/i/**/*.svg']
+          }
+        ]
+      }
+    },
     copy: {
-      css: {
-        files: [{
-          cwd: 'source/css',
-          src: ['**/*.css'],
-          dest: 'dest/css',
-          expand: true,
-        }]
-      },
       js: {
         files: [{
           cwd: 'source/js',
           src: ['**/*.js'],
-          dest: 'dest/js',
+          dest: 'dest/assets/javascripts',
           expand: true,
         }]
       },
@@ -54,7 +55,7 @@ module.exports = function(grunt) {
         files: [{
           cwd: 'source/i',
           src: ['**/*'],
-          dest: 'dest/i',
+          dest: 'dest/assets/images',
           expand: true,
         }]
       },
@@ -62,7 +63,7 @@ module.exports = function(grunt) {
         files: [{
           cwd: 'source/fonts',
           src: ['**/*'],
-          dest: 'dest/fonts',
+          dest: 'dest/assets/fonts',
           expand: true,
         }]
       }
@@ -70,15 +71,15 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['source/js/**/*.js'],
-        tasks: ['copy:js'],
+        tasks: ['copy:js']
       },
       css: {
         files: ['source/css/**/*.css'],
-        tasks: ['copy:css', 'autoprefixer'],
+        tasks: ['autoprefixer']
       },
       jade: {
         files: ['source/**/*.jade'],
-        tasks: ['jade'],
+        tasks: ['jade']
       },
       compass: {
         files: ['source/**/*.scss', 'source/**/*.sass' ],
@@ -98,7 +99,7 @@ module.exports = function(grunt) {
         options: {
           hostname: '*',
           port: 3003,
-          dest: '.'
+          base: 'dest'
         }
       }
     }
@@ -110,6 +111,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-svg2png');
 
   grunt.registerTask('default', [
     'connect',
@@ -117,6 +119,7 @@ module.exports = function(grunt) {
     'jade',
     'compass',
     'autoprefixer',
+    'svg2png',
     'watch'
   ]);
 }

@@ -3,7 +3,7 @@
 
 body
   font-family: $font-family
-  background: $bg-color
+  background-color: $bg-color
   color: $text-color
   line-height: $line-height
   font-size: $text-size
@@ -23,22 +23,23 @@ a[href^=tel]
 .container
   +center($max_width: $layout-width, $pad: 0)
 
-// STICKY FOOTER
-//html, body
-//  height: 100%
-//.header
-//  margin-bottom: 0
-//.page-wrap
-//  overflow: hidden
-//  min-height: 100%
-//  height: auto !important
-//  height: 100%
-//  margin: 0 auto $footer-height * -1
-//  margin: 0 auto ($footer-height + $footer-margintop) * -1
-//#push, .footer
-//  height: $footer-height
-//  margin-top: $footer-margintop
-// STICKY FOOTER
+//STICKY FOOTER
+// html, body
+//   height: 100%
+// .header
+//   margin-bottom: 0
+// .page-wrap
+//   overflow: hidden
+//   min-height: 100%
+//   height: auto !important
+//   height: 100%
+//   margin: 0 auto $footer-height * -1
+//   padding-bottom: $footer-height
+//   //margin: 0 auto ($footer-height + $footer-margintop) * -1
+// #push, .footer
+//   height: $footer-height
+//   margin-top: $footer-margintop
+//STICKY FOOTER
 
 h1
   font-size: 44px

@@ -3,7 +3,7 @@
   display: inline-block
   outline: none
   margin-bottom: 18px
-  width: 300px
+  width: 100%
   height: 41px
   padding: 5px 10px
   border: 1px solid #DDD
@@ -36,29 +36,37 @@
 //  .b-input
 //    color: #db2300
 
+input[type="checkbox"]
+  vertical-align: middle
+  & + label
+    vertical-align: middle
+    cursor: pointer
+    user-select: none
+
 .b-select
-  background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAMBAMAAADrBkIEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEUAAACisr2isr2isr0AAABpxCLHAAAAA3RSTlMAf4C/aSLHAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAEdJREFUGNNtytEJACAIhGFtgsAFgiYo998tO+zB9H85OD7iTuitJyuuNxWMdYe7KZjooMx/7Dxh8IzBC3x5gS+vsPEKG0/4ADZNBy1StoBEAAAAAElFTkSuQmCC') right center no-repeat
+  background: #FFF url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAMBAMAAADrBkIEAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEUAAACisr2isr2isr0AAABpxCLHAAAAA3RSTlMAf4C/aSLHAAAAAWJLR0QAiAUdSAAAAAlwSFlzAAALEgAACxIB0t1+/AAAAEdJREFUGNNtytEJACAIhGFtgsAFgiYo998tO+zB9H85OD7iTuitJyuuNxWMdYe7KZjooMx/7Dxh8IzBC3x5gS+vsPEKG0/4ADZNBy1StoBEAAAAAElFTkSuQmCC') right center no-repeat
   background-size: 22px
   padding-right: 27px
   &::-ms-expand
     display: none
   &[disabled]
     opacity: .8
+@-moz-document url-prefix()
+  .b-select
+    background: #FFF
 
 .b-textarea
   font-family: $font-family
-  width: 300px
+  width: 100%
   height: 200px
-  max-width: 300px
+  max-width: 100%
   max-height: 200px
   resize: none
   padding: 10px
-  margin-bottom: 18px
+  margin-bottom: 0
 
 .b-label
-  display: inline-block
-  vertical-align: middle
-  padding-right: 10px
+  display: block
 
 .m-button
   display: inline-block
@@ -73,9 +81,13 @@
   font-size: $text-size
   padding: 15px 30px
   background-color: #000
-  margin-bottom: 18px
+  margin-bottom: 0
+  white-space: nowrap
+  vertical-align: middle
+  touch-action: manipulation
+  +resetTap
 
   &:hover
     background-color: #434343
     &:active
-      top: 2px
+      transform: translateY(1px)
