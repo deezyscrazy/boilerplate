@@ -1,13 +1,18 @@
 *, *:before, *:after
   box-sizing: border-box
+  +resetTap
 
 body
   font-family: $font-family
   background-color: $bg-color
   color: $text-color
   line-height: $line-height
-  font-size: $text-size
-  min-width: $layout-width
+  font-size: $font-size-sm
+  min-width: $min-width
+  +breakpoint($screen-md-min)
+    font-size: $font-size-md
+  +breakpoint($screen-lg-min)
+    font-size: $font-size-lg
 
 a[href^=tel]
   color: inherit
@@ -21,7 +26,11 @@ a[href^=tel]
   overflow: hidden
 
 .container
-  +center($max_width: $layout-width, $pad: 0)
+  +center($max_width: $screen-sm-min, $pad: 20px)
+  +breakpoint($screen-md-min)
+    +center($max_width: $screen-md-min, $pad: rem(14px))
+  +breakpoint($screen-lg-min)
+    +center($max_width: $screen-lg-min, $pad: rem(14px))
 
 //STICKY FOOTER
 // html, body
@@ -82,13 +91,38 @@ strong
   float: left
 
 a, input, textarea, .btn
-  outline: none
+  &, &:focus
+    outline: none
 
-a
+a, a:hover, a:visited, a:focus
+  text-decoration: inherit
+
+.link
   color: #000
-  text-decoration: underline
-  &:hover
-    text-decoration: none
+  border-bottom: 1px solid
+  transition: all $trans-dur $trans-ease
+  +hover
+    border-color: transparent
+  &_type
+    &_dashed
+      border-bottom: 1px dashed
+
+.hide
+  &-xs
+    @media (max-width: $screen-sm-min)
+      display: none !important
+  &-sm
+    @media (min-width: $screen-sm-min) and (max-width: $screen-md-min)
+      display: none !important
+  &-md
+    @media (min-width: $screen-md-min) and (max-width: $screen-lg-min)
+      display: none !important
+  &-lg
+    +breakpoint($screen-lg-min)
+      display: none !important
+
+.text-center
+  text-align: center
 
 table
   border-collapse: collapse

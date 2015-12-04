@@ -1,4 +1,7 @@
+var timer = require("grunt-timer");
+
 module.exports = function(grunt) {
+timer.init(grunt);
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jade: {
@@ -15,16 +18,20 @@ module.exports = function(grunt) {
         pretty: true,
       }
     },
-    compass: {
-      dist: {
+    sass: {
         options: {
-          config: 'config.rb'
+            sourceMap: true,
+            outputStyle: 'compressed'
+        },
+        dist: {
+            files: {
+                'source/css/app.css': 'source/sass/app.sass'
+            }
         }
-      }
     },
     autoprefixer: {
       options: {
-        browsers: ['last 2 version', '> 1%', 'Firefox ESR', 'Opera 12.1' ]
+        browsers: [ '> 2%', 'last 2 versions', 'Firefox ESR', 'Opera 12.1', 'Android >= 4', 'iOS >= 5', 'IE 10' ]
       },
       multiple_files: {
         expand: true,
@@ -71,19 +78,28 @@ module.exports = function(grunt) {
     watch: {
       js: {
         files: ['source/js/**/*.js'],
-        tasks: ['copy:js']
+        tasks: ['copy:js'],
+        options: {
+          livereload: true,
+        }
       },
       css: {
         files: ['source/css/**/*.css'],
-        tasks: ['autoprefixer']
+        tasks: ['autoprefixer'],
+        options: {
+          livereload: true,
+        }
       },
       jade: {
         files: ['source/**/*.jade'],
-        tasks: ['jade']
+        tasks: ['jade'],
+        options: {
+          livereload: true,
+        }
       },
-      compass: {
+      sass: {
         files: ['source/**/*.scss', 'source/**/*.sass' ],
-        tasks: ['compass']
+        tasks: ['sass']
       },
       img: {
         files: 'source/i/**/*',
@@ -106,24 +122,20 @@ module.exports = function(grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jade');
-  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-autoprefixer');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-svg2png');
+  // grunt.loadNpmTasks('grunt-svg2png');
 
   grunt.registerTask('default', [
     'connect',
     'copy',
     'jade',
-    'compass',
+    'sass',
     'autoprefixer',
-    'svg2png',
+    // 'svg2png',
     'watch'
   ]);
 }
-
-// TODO: Add grunt-notify
-
-

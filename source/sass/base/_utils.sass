@@ -1,6 +1,15 @@
 // ₽
 // &#8381;
 
+=breakpoint($val)
+  @media (min-width: $val)
+    @content
+
+=sprite($type: 1)
+  $sprite-width: 360px
+  background: transparent url(../images/sprite.svg) 0 0 no-repeat
+  background-size: $sprite-width * $type
+
 =resetTap
   -webkit-tap-highlight-color: rgba(0,0,0,0)
 
@@ -8,6 +17,8 @@
   .is-notouch &:hover
     @content
   .is-touch &:active
+    @content
+  &.active
     @content
 
 =cf
@@ -18,10 +29,9 @@
   &:after
     clear: both
 
-@function em($px, $base: $base-font-size)
-  @return $px / $base * 1em
+@function rem($px, $base: $font-size-lg)
+  @return $px / $base * 1rem
 
-// Placeholder styling mixin
 =placeholder
   &::-webkit-input-placeholder
     @content
@@ -68,44 +78,65 @@
 .b-debug-pagelist
   position: fixed
   z-index: 1030
-  width: 200px
-  height: auto
+  width: 30px
+  height: 30px
   background-color: #fff
-  left: -200px
-  top: 300px
-  padding: 30px
-  border-top-right-radius: 10px
-  border-bottom-right-radius: 10px
-  // opacity: .9;
+  right: 10px
+  bottom: 50px
+  border-radius: 100px
   border: 1px solid #DDD
-  transition: all .3s ease
-  &:hover
-    left: 0
+  overflow: hidden
+  transition: all .2s ease-out
+  -webkit-overflow-scrolling: touch
+  &.active
+    width: 250px
+    height: 250px
+    border-radius: 5px
+    ul
+      opacity: 1
+    .b-debug-pagelist__btn
+      top: 5px
+      left: 50%
+      right: auto
+      margin-left: -15px
+      // border-color: transparent
+      &:after
+        background: url('data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2225px%22%20height%3D%2225px%22%20viewBox%3D%220.6%20-1%2025%2025%22%20enable-background%3D%22new%200.6%20-1%2025%2025%22%20xml%3Aspace%3D%22preserve%22%3E%3Cpolygon%20fill%3D%22%23DDDDDD%22%20points%3D%2225.9%2C-0.6%2025.2%2C-1.3%2013.1%2C10.8%201%2C-1.3%200.3%2C-0.6%2012.4%2C11.5%200.3%2C23.6%201%2C24.3%2013.1%2C12.2%2025.2%2C24.3%2025.9%2C23.6%2013.8%2C11.5%20%22%2F%3E%3C%2Fsvg%3E') center center no-repeat
   .b-debug-pagelist__btn
-    position: absolute
-    width: 50px
-    height: 50px
-    top: 50%
-    margin-top: -25px
-    right: -50px
-    background-color: #fff
-    border-top-right-radius: 10px
-    border-bottom-right-radius: 10px
     cursor: pointer
-    border: 1px solid #DDD
-    border-left: none
+    position: absolute
+    width: 30px
+    height: 30px
+    top: -1px
+    right: -1px
+    background-color: #fff
+    border-radius: 100%
+    cursor: pointer
+    // border: 1px solid #DDD
     &:after
       content: ' '
       position: absolute
       width: 100%
       height: 100%
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="12.4px" height="25px" viewBox="273.1 0 12.4 25"><path fill="#888" d="M273.1,2.6l0-2.6l12.4,12.5L273.1,25l0-2.6l9.7-9.9L273.1,2.6L273.1,2.6z"/></svg>') center center no-repeat
+      background: url('data:image/svg+xml,%3Csvg%20version%3D%221.1%22%20id%3D%22%D0%A1%D0%BB%D0%BE%D0%B9_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2225px%22%20height%3D%2225px%22%20viewBox%3D%220.6%20-1%2025%2025%22%20enable-background%3D%22new%200.6%20-1%2025%2025%22%20xml%3Aspace%3D%22preserve%22%3E%3Cg%3E%3Crect%20x%3D%220.6%22%20y%3D%224.5%22%20fill%3D%22%23DDDDDD%22%20width%3D%2225%22%20height%3D%221%22%2F%3E%3C%2Fg%3E%3Cg%3E%3Crect%20x%3D%220.6%22%20y%3D%2211%22%20fill%3D%22%23DDDDDD%22%20width%3D%2225%22%20height%3D%221%22%2F%3E%3C%2Fg%3E%3Cg%3E%3Crect%20x%3D%220.6%22%20y%3D%2217.5%22%20fill%3D%22%23DDDDDD%22%20width%3D%2225%22%20height%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E') center center no-repeat
+      background-size: 18px
   ul
-    margin-bottom: 0
+    margin-top: 40px
+    overflow-x: hidden
+    overflow-y: auto
+    transition: all .5s ease
+    opacity: 0
     list-style: none
+    height: 200px
     li
-      line-height: 1.5
+      line-height: 1
       margin-left: 0
       &:before
         display: none
       a
+        line-height: 34px
+        height: 30px
+        display: block
+        padding: 0 10px
+        +hover
+          background-color: #F7F7F7
