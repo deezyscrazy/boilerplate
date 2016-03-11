@@ -1,21 +1,26 @@
 
-SCSS / JADE BOILERPLATE
+MAKEUP BOILERPLATE
 -----------------------
 
 ###Quick start guide:
 
 Install packages
+```sh
+$ npm install
+```
 
-    $ npm install
+Run Grunt tasks
+```sh
+$ grunt default
+```
 
-Run Grunt tasks (compile SCSS/JADE, run server, copy build output to /dest directory, watch for changes)
-
-    $ grunt default
-    
 Now, you have:
+- all *.html *.css files, images, fonts, js at /dist folder
+- running webserver at http://0.0.0.0:3003/
 
- - all *.html *.css files, images, fonts, js at /dest folder
- - running webserver at http://0.0.0.0:3003/
-
-All sources located at /source directory.
-SCSS compiling with Compass. If you want to configure Compass, edit /config.rb
+Tech stack:
+- SASS
+- PostCSS (Autoprefixer)
+- JADE
+- Webpack
+- Babel

@@ -8,9 +8,9 @@ module.exports = (grunt) => {
         jade: {
             compile: {
                 files: [{
-                    cwd: 'source/jade',
+                    cwd: 'src/jade',
                     src: ['**/*.jade', '!**/includes/*.jade'],
-                    dest: 'dest',
+                    dest: 'dist',
                     expand: true,
                     ext: '.html'
                 }]
@@ -26,7 +26,7 @@ module.exports = (grunt) => {
             },
             dist: {
                 files: {
-                    'source/css/app.css': 'source/sass/app.sass'
+                    'build/css/app.css': 'src/sass/app.sass'
                 }
             }
         },
@@ -41,68 +41,75 @@ module.exports = (grunt) => {
             multiple_files: {
                 expand: true,
                 flatten: true,
-                src: 'source/css/*.css',
-                dest: 'dest/assets/stylesheets/'
+                src: 'build/css/*.css',
+                dest: 'dist/assets/stylesheets/'
+            }
+        },
+        webpack: {
+            build: {
+                entry: './src/js/app.js',
+                output: {
+                    path: 'dist/assets/javascripts',
+                    filename: 'app.js',
+                },
+                watch: true,
+                module: {
+                    loaders: [
+                        {
+                            test: /\.js?$/,
+                            exclude: /(node_modules|bower_components)/,
+                            loader: 'babel',
+                            query: {
+                                presets: ['react', 'es2015', 'stage-0']
+                            }
+                        }
+                    ]
+                }
             }
         },
         copy: {
-            js: {
-                files: [{
-                    cwd: 'source/js',
-                    src: ['**/*.js'],
-                    dest: 'dest/assets/javascripts',
-                    expand: true,
-                }]
-            },
             img: {
                 files: [{
-                    cwd: 'source/i',
+                    cwd: 'src/i',
                     src: ['**/*'],
-                    dest: 'dest/assets/images',
-                    expand: true,
+                    dest: 'dist/assets/images',
+                    expand: true
                 }]
             },
             fonts: {
                 files: [{
-                    cwd: 'source/fonts',
+                    cwd: 'src/fonts',
                     src: ['**/*'],
-                    dest: 'dest/assets/fonts',
-                    expand: true,
+                    dest: 'dist/assets/fonts',
+                    expand: true
                 }]
             }
         },
         watch: {
-            js: {
-                files: ['source/js/**/*.js'],
-                tasks: ['copy:js'],
-                options: {
-                    livereload: true,
-                }
+            sass: {
+                files: ['src/**/*.scss', 'src/**/*.sass'],
+                tasks: ['sass']
             },
             css: {
-                files: ['source/css/**/*.css'],
+                files: ['build/css/**/*.css'],
                 tasks: ['postcss'],
                 options: {
                     livereload: true,
                 }
             },
             jade: {
-                files: ['source/**/*.jade'],
+                files: ['src/**/*.jade'],
                 tasks: ['jade'],
                 options: {
                     livereload: true,
                 }
             },
-            sass: {
-                files: ['source/**/*.scss', 'source/**/*.sass' ],
-                tasks: ['sass']
-            },
             img: {
-                files: 'source/i/**/*',
+                files: 'src/i/**/*',
                 tasks: ['copy:img']
             },
             fonts: {
-                files: 'source/fonts/**/*',
+                files: 'src/fonts/**/*',
                 tasks: ['copy:fonts']
             }
         },
@@ -111,7 +118,7 @@ module.exports = (grunt) => {
                 options: {
                     hostname: '*',
                     port: 3003,
-                    base: 'dest'
+                    base: 'dist'
                 }
             }
         }
@@ -123,6 +130,7 @@ module.exports = (grunt) => {
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-webpack');
 
     grunt.registerTask('default', [
         'connect',
@@ -130,6 +138,7 @@ module.exports = (grunt) => {
         'jade',
         'sass',
         'postcss',
+        'webpack',
         'watch'
     ]);
 }

@@ -1,8 +1,13 @@
-#### NODE ####
+dist
+build
+
+.sass-cache/
+*.css.map
 
 # Logs
 logs
 *.log
+npm-debug.log*
 
 # Runtime data
 pids
@@ -18,36 +23,18 @@ coverage
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
 
+# node-waf configuration
+.lock-wscript
+
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
-# Commenting this out is preferred by some people, see
-# https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
+# Dependency directories
 node_modules
+jspm_packages
 
-bower_components
+# Optional npm cache directory
+.npm
 
-# Users Environment Variables
-.lock-wscript
-
-#### SASS ####
-
-.sass-cache
-
-#### SUBLIME ####
-
-# workspace files are user-specific
-*.sublime-workspace
-
-# project files should be checked into the repository, unless a significant
-# proportion of contributors will probably not be using SublimeText
-# *.sublime-project
-
-#sftp configuration file
-#sftp-config.json
-
-.sublime-grunt.cache
-
-#MAC system files
-.DS_Store
+# Optional REPL history
+.node_repl_history
