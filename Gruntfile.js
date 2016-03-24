@@ -1,4 +1,5 @@
 const timer = require('grunt-timer');
+const moduleImporter = require('sass-module-importer');
 
 module.exports = (grunt) => {
     timer.init(grunt);
@@ -22,7 +23,8 @@ module.exports = (grunt) => {
         sass: {
             options: {
                 sourceMap: true,
-                outputStyle: 'compressed'
+                outputStyle: 'compressed',
+                importer: moduleImporter()
             },
             dist: {
                 files: {
