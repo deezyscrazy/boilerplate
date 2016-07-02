@@ -1,26 +1,41 @@
 {
   "name": "boilerplate",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "makeup boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/irudoy/boilerplate.git"
+  },
   "author": "Ivan Rudoy",
+  "license": "ISC",
+  "engines": {
+    "node": ">=4.4.2"
+  },
+  "scripts": {
+    "start": "rm -rf ./dist && if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:dev": "grunt default",
+    "start:prod": "grunt build"
+  },
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "babel-core": "^6.0.20",
-    "babel-eslint": "^4.1.3",
+    "babel-eslint": "^6.1.0",
     "babel-loader": "^6.0.1",
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
-    "eslint-plugin-react": "^3.6.2",
-    "grunt": "^0.4.5",
-    "grunt-contrib-connect": "^0.11.2",
-    "grunt-contrib-copy": "^0.8.2",
-    "grunt-contrib-jade": "^0.15.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.7.2",
+    "eslint": "^3.0.0",
+    "eslint-plugin-react": "^5.2.2",
+    "grunt": "^1.0.1",
+    "grunt-contrib-connect": "^1.0.2",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jade": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-postcss": "^0.8.0",
     "grunt-sass": "^1.1.0",
     "grunt-timer": "^0.6.0",
     "grunt-webpack": "^1.0.11",
+    "if-env": "^1.0.0",
     "sass-module-importer": "^1.2.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.12.13"
@@ -29,7 +44,8 @@
     "fastclick": "^1.0.6",
     "is_js": "^0.8.0",
     "jeet": "^6.1.2",
-    "jquery": "^2.2.0",
+    "jquery": "^3.0.0",
+    "svg4everybody": "^2.0.3",
     "normalize.css": "^4.0.0"
   }
 }
