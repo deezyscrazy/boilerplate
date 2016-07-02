@@ -13,8 +13,8 @@
   },
   "scripts": {
     "start": "rm -rf ./dist && if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
-    "start:dev": "grunt default",
-    "start:prod": "grunt build"
+    "start:dev": "./node_modules/grunt/bin/grunt default",
+    "start:prod": "./node_modules/grunt/bin/grunt build"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.3",
